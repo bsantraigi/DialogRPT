@@ -39,13 +39,13 @@ class Custom_Dataset(Dataset):
       #ctx = torch.nn.functional.pad(ctx,(0,C_MAX_LEN-ctx.shape[1]),"constant",0)
       d = tok.encode(c+" "+s+" "+r,return_tensors='pt')
       inp = d[:,max(p-C_MAX_LEN,0):p+R_MAX_LEN]#torch.concat((ctx,r,torch.tensor([[50256]])),dim=1)
-      if inp.shape[1]<C_MAX_LEN+R_MAX_LEN+1:
-        inp_1 = torch.concat((inp,torch.LongTensor([[50256]]),torch.zeros((1,C_MAX_LEN+R_MAX_LEN-inp.shape[1]),dtype=torch.long)),dim=1)
+      if inp.shape[1]<C_MAX_LEN+R_MAX_LEN:
+        inp_1 = torch.concat((inp,torch.full((1,C_MAX_LEN+R_MAX_LEN-inp.shape[1]),0,dtype=torch.long)),dim=1)
+        lab = torch.concat((inp,torch.full((1,C_MAX_LEN+R_MAX_LEN-inp.shape[1]),-1,dtype=torch.long)),dim=1)
       #r = torch.nn.functional.pad(r,(0,R_MAX_LEN-r.shape[1]),"constant",0)
-      lab = inp_1.clone()
       lab[:,:min(p,C_MAX_LEN)] = -1
-      lab[:,inp.shape[1]+1:] = -1
-      self.data.append({'con':ctx.shape[1],'res':d.shape[1]-p-1,'inp':torch.LongTensor(inp_1)[0,:-1],'label':torch.LongTensor(lab)[0,1:]})
+      # lab[:,inp.shape[1]+1:] = -1
+      self.data.append({'con':ctx.shape[1],'res':d.shape[1]-p-1,'inp':torch.LongTensor(inp_1)[0,:],'label':torch.LongTensor(lab)[0,:]})
 
   def __getitem__(self,index):
     return self.data[index]
