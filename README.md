@@ -1,3 +1,7 @@
+# Dataset preparation
+
+**Scripts used for dataset preparation are in the [Mirror baseline repo](https://github.com/bsantraigi/2022-R3-Mirror-Baseline).**
+
 # Run Commands
 
 ```bash
