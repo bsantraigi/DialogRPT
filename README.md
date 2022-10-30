@@ -2,6 +2,10 @@
 
 **Scripts used for dataset preparation are in the [Mirror baseline repo](https://github.com/bsantraigi/2022-R3-Mirror-Baseline).**
 
+**Creating the .tsv file used for DGPT_Ftune**
+
+`python DialogRPT/DGPT_Ftune/prepare_ddcc.py ./DialogRPT/data/ijcnlp_dailydialog_cc ./DialogRPT/preprocessed_data/DD_cc`
+
 # Run Commands
 
 ```bash
