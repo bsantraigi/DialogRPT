@@ -1,6 +1,5 @@
 git clone https://github.com/bsantraigi/DialogRPT.git
 git clone https://github.com/bsantraigi/2021-R3-Baselines
-gdown --folder https://drive.google.com/drive/folders/1bPoHKwpAIKx12msk2DnEDFrSLaUZuOj1 -O preprocessed_data/DD/
 
 # Get preprocessed_data/DD_cc/ from somewhere!
 cd DialogRPT/
